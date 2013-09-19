@@ -30,66 +30,6 @@
 #include <net/if.h>
 #include <sys/ioctl.h>
 
-#include <linux/if_tun.h>
-
-static int tun_alloc(char *dev)
-{
-  struct ifreq ifr;
-  int fd, err;
-  if ((fd = open("/dev/net/tun", O_RDWR)) < 0)
-    caml_failwith("unable to open /dev/net/tun");
-  memset(&ifr, 0, sizeof(ifr));
-  ifr.ifr_flags = IFF_TAP | IFF_NO_PI;
-  if (*dev)
-    strncpy(ifr.ifr_name, dev, IFNAMSIZ);
-  if ((err=ioctl(fd, TUNSETIFF, (void *)&ifr)) < 0) {
-    fprintf(stderr, "TUNSETIFF failed: %d\n", err);
-    caml_failwith("TUNSETIFF failed");
-  }
-  strcpy(dev, ifr.ifr_name);
-  return fd;
-}
-
-static void
-setnonblock(int fd)
-{
-  int flags;
-  flags = fcntl(fd, F_GETFL);
-  if (flags < 0)
-    err(1, "setnonblock: fcntl");
-  flags |= O_NONBLOCK;
-  if (fcntl(fd, F_SETFL, flags) < 0)
-    err(1, "setnonblock, F_SETFL");
-}
-
-CAMLprim value
-tap_opendev(value v_str)
-{
-  char dev[IFNAMSIZ];
-  char buf[4096];
-  int fd;
-
-  bzero(dev, sizeof dev);
-  memcpy(dev, String_val(v_str), caml_string_length(v_str));
-  fd = tun_alloc(dev);
-  setnonblock(fd);
-
-  int dev_id;
-
-  //small hack to create multiple interfaces
-  sscanf(dev, "tap%d", &dev_id);
-  fprintf(stderr, "I should be opening 10.%d.0.1\n", dev_id);
-
-  snprintf(buf, sizeof buf, "ip link set %s up", dev);
-  if (system(buf) < 0) err(1, "system");
-  snprintf(buf, sizeof buf, "/sbin/ifconfig %s 10.%d.0.2 netmask 255.255.255.0 up", String_val(v_str), dev_id);
-  fprintf(stderr, "%s\n", buf);
-  system(buf);
-  if (system(buf) < 0) err(1, "system");
-  fprintf(stderr, "tap_opendev: %s\n", dev);
-  return Val_int(fd);
-}
-
 CAMLprim value
 pcap_opendev(value v_name) {
   CAMLparam1(v_name);
@@ -105,20 +45,3 @@ pcap_get_buf_len(value v_fd) {
   CAMLreturn(Val_int(4096));
 }
 
-CAMLprim value
-get_mac_addr(value v_str) {
-  CAMLparam1( v_str );
-  CAMLlocal1(v_mac);
-
-  int fd;
-  struct ifreq ifq;
-
-  fd = socket(PF_INET, SOCK_DGRAM, 0);
-  strcpy(ifq.ifr_name, String_val(v_str));
-  if (ioctl(fd, SIOCGIFHWADDR, &ifq) < 0)
-    err(1, "ioctl get_mac_addr");
-
-  v_mac = caml_alloc_string(6);
-  memcpy(String_val(v_mac), ifq.ifr_hwaddr.sa_data, 6);
-  CAMLreturn (v_mac);
-}
