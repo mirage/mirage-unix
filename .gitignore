@@ -1,0 +1,6 @@
+_build/
+.*.swp
+*.o
+*.a
+setup.data
+setup.log
