@@ -1,3 +1,4 @@
+* switched build system to topkg and ocamlbuild
 * separated from mirage-platform into a custom repository, mirage-unix
 
 ## 3.0.5 (2017-11-19)

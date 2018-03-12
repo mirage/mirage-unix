@@ -17,8 +17,6 @@ let rec call_hooks hooks  =
           ) in
         call_hooks hooks
 
-open Printf
-
 (* Main runloop, which registers a callback so it can be invoked
    when timeouts expire. Thus, the program may only call this function
    once and once only. *)

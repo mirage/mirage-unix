@@ -1,0 +1,9 @@
+version = "%%VERSION_NUM%%"
+description = "Library support for the Mirage/Unix backend"
+requires = "lwt lwt.unix logs"
+archive(byte) = "oS.cma"
+archive(native) = "oS.cmxa"
+plugin(byte) = "oS.cma"
+plugin(native) = "oS.cmxs"
+exists_if = "oS.cma"
+
