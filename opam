@@ -12,6 +12,7 @@ build: [
 depends: [
   "ocamlfind" {build}
   "ocamlbuild" {build}
+  "topkg" {build & >= "0.7.6"}
   "lwt" {>= "2.4.3"}
   "logs"
 ]
