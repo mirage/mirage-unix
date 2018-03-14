@@ -1,3 +1,7 @@
+## 3.0.7 (2018-03-14)
+
+* adjust OS.Time to meet Mirage_time_lwt.S
+
 ## 3.0.6 (2018-03-13)
 
 * switched build system to topkg and ocamlbuild
