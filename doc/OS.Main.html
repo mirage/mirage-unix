@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="previous" href="OS.Lifecycle.html">
+<link rel="next" href="OS.Time.html">
+<link rel="Up" href="OS.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="OS" rel="Chapter" href="OS.html"><title>OS.Main</title>
+</head>
+<body>
+<div class="navbar"><a class="pre" href="OS.Lifecycle.html" title="OS.Lifecycle">Previous</a>
+&nbsp;<a class="up" href="OS.html" title="OS">Up</a>
+&nbsp;<a class="post" href="OS.Time.html" title="OS.Time">Next</a>
+</div>
+<h1>Module <a href="type_OS.Main.html">OS.Main</a></h1>
+
+<pre><span id="MODULEMain"><span class="keyword">module</span> Main</span>: <code class="code"><span class="keyword">sig</span></code> <a href="OS.Main.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><hr width="100%">
+
+<pre><span id="VALrun"><span class="keyword">val</span> run</span> : <code class="type">unit Lwt.t -> unit</code></pre>
+<pre><span id="VALat_exit"><span class="keyword">val</span> at_exit</span> : <code class="type">(unit -> unit Lwt.t) -> unit</code></pre>
+<pre><span id="VALat_enter"><span class="keyword">val</span> at_enter</span> : <code class="type">(unit -> unit Lwt.t) -> unit</code></pre>
+<pre><span id="VALat_exit_iter"><span class="keyword">val</span> at_exit_iter</span> : <code class="type">(unit -> unit) -> unit</code></pre>
+<pre><span id="VALat_enter_iter"><span class="keyword">val</span> at_enter_iter</span> : <code class="type">(unit -> unit) -> unit</code></pre></body></html>
