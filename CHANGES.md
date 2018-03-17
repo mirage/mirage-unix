@@ -1,15 +1,16 @@
 ## 3.0.8 (2018-03-17)
 
-* re-add dependency on io-page-unix to avoid undefined references (mirage_get_addr, mirage_alloc_pages)
+* re-add dependency on io-page-unix to avoid undefined references
+  `mirage_get_addr`, `mirage_alloc_pages` (@hannesm in #4)
 
 ## 3.0.7 (2018-03-14)
 
-* adjust OS.Time to meet Mirage_time_lwt.S
+* adjust OS.Time to meet Mirage_time_lwt.S (@hannesm in #3)
 
 ## 3.0.6 (2018-03-13)
 
-* switched build system to topkg and ocamlbuild
-* separated from mirage-platform into a custom repository, mirage-unix
+* switched build system to topkg and ocamlbuild (@hannesm in #2)
+* split mirage-unix from mirage-platform into a custom repository (@hannesm)
 
 ## 3.0.5 (2017-11-19)
 
