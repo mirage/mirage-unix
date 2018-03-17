@@ -1,6 +1,6 @@
 version = "%%VERSION_NUM%%"
 description = "Library support for the Mirage/Unix backend"
-requires = "lwt lwt.unix logs"
+requires = "lwt lwt.unix logs io-page-unix"
 archive(byte) = "oS.cma"
 archive(native) = "oS.cmxa"
 plugin(byte) = "oS.cma"

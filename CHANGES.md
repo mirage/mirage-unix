@@ -1,3 +1,7 @@
+## 3.0.8 (2018-03-17)
+
+* re-add dependency on io-page-unix to avoid undefined references (mirage_get_addr, mirage_alloc_pages)
+
 ## 3.0.7 (2018-03-14)
 
 * adjust OS.Time to meet Mirage_time_lwt.S
