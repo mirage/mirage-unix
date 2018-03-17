@@ -16,6 +16,7 @@ depends: [
   "topkg" {build & >= "0.7.6"}
   "lwt" {>= "2.4.3"}
   "logs"
+  "io-page-unix" {>= "2.0.0"}
 ]
 available: [ocaml-version >= "4.04.2"]
 tags: "org:mirage"
