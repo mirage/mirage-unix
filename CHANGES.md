@@ -1,3 +1,9 @@
+## 3.1.0 (2018-11-11)
+
+* remove OS.Env module (@hannesm in #5)
+* upgrade to opam2 (@hannesm in #7)
+* re-add AppVeyor CI (@djs55 in #6)
+
 ## 3.0.8 (2018-03-17)
 
 * re-add dependency on io-page-unix to avoid undefined references
