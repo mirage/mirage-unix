@@ -6,15 +6,16 @@ bug-reports:  "https://github.com/mirage/mirage-unix/issues/"
 dev-repo:     "git+https://github.com/mirage/mirage-unix.git"
 doc:          "https://mirage.github.io/mirage-unix/doc"
 license:      "ISC"
+
 build: [
-  [ "ocaml" "pkg/pkg.ml" "build" "--pinned" "%{pinned}%" "--tests" "false" ]
+  ["dune" "subst"] {pinned}
+  ["dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name "-j" jobs] {with-test}
 ]
 
 depends: [
-  "ocamlfind" {build}
-  "ocamlbuild" {build}
-  "topkg" {build & >= "0.7.6"}
   "ocaml" {>= "4.04.2"}
+  "dune" {build}
   "lwt" {>= "2.4.3"}
   "logs"
   "io-page-unix" {>= "2.0.0"}

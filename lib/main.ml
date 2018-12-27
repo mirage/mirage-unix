@@ -1,5 +1,7 @@
 open Lwt.Infix
 
+[@@@warning "-3"] (* due to Lwt_sequence *)
+
 let exit_hooks = Lwt_sequence.create ()
 let enter_hooks = Lwt_sequence.create ()
 

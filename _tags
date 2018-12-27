@@ -1,5 +1,0 @@
-true: annot, bin_annot, principal, safe-string
-true: warn(+A)
-
-<lib/*>: package(lwt lwt.unix logs)
-<lib/*.cm{x,o}> and not <lib/oS.cmx>: for-pack(OS)

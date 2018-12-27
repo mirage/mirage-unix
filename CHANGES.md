@@ -1,3 +1,8 @@
+## dev
+
+* port to Dune from ocamlbuild, and replace packing with
+  module aliases for the `OS` module (@avsm)
+
 ## 3.1.0 (2018-11-11)
 
 * remove OS.Env module (@hannesm in #5)
