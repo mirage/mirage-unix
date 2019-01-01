@@ -1,5 +1,4 @@
 _build/
 .*.swp
-*.o
-*.a
-mirage-unix.install
+*.install
+.merlin
