@@ -1,7 +1,8 @@
-## dev
+## 3.2.0 (2019-01-02)
 
 * port to Dune from ocamlbuild, and replace packing with
-  module aliases for the `OS` module (@avsm)
+  module aliases for the `OS` module (#8 by @avsm)
+* Improve ocamldoc slightly for the main module (@avsm)
 
 ## 3.1.0 (2018-11-11)
 

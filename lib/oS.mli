@@ -1,3 +1,5 @@
+(** MirageOS Unix implementation of the [OS] module *)
+
 module Lifecycle : sig
   val await_shutdown_request :
     ?can_poweroff:bool ->
