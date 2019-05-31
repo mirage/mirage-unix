@@ -1,13 +1,13 @@
 (library
-  (name oS)
+  (name OS_unix)
   (public_name mirage-unix.internals)
   (libraries lwt lwt.unix logs io-page-unix)
-  (modules lifecycle main oS time))
+  (modules lifecycle main time))
 
 (library
-  (name oS_common)
+  (name OS)
   (public_name mirage-unix)
   (implements mirage-os-shim)
   (libraries mirage-unix.internals)
-  (modules mirage_OS)
+  (modules OS)
  )
