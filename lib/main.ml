@@ -1,23 +1,21 @@
 open Lwt.Infix
 
-[@@@warning "-3"] (* due to Lwt_sequence *)
-
-let exit_hooks = Lwt_sequence.create ()
-let enter_hooks = Lwt_sequence.create ()
+let enter_hooks = Lwt_dllist.create ()
 
 let rec call_hooks hooks  =
-  match Lwt_sequence.take_opt_l hooks with
-    | None ->
-        Lwt.return_unit
-    | Some f ->
-        (* Run the hooks in parallel *)
-        let _ =
-          Lwt.catch f
-          (fun exn ->
-            Logs.warn (fun m -> m "call_hooks: exn %s" (Printexc.to_string exn));
-            Lwt.return_unit
-          ) in
-        call_hooks hooks
+  match Lwt_dllist.take_opt_l hooks with
+  | None -> Lwt.return_unit
+  | Some f ->
+    (* Run the hooks in parallel *)
+    let _ =
+      Lwt.catch f
+        (fun exn ->
+           (* call_hooks enter_hooks is executed joined with installing the logs
+              reporter, use printf here (otherwise the message may be lost). *)
+           Printf.printf "call_hooks: exn %s\n%!" (Printexc.to_string exn);
+           Lwt.return_unit)
+    in
+    call_hooks hooks
 
 (* Main runloop, which registers a callback so it can be invoked
    when timeouts expire. Thus, the program may only call this function
@@ -31,10 +29,12 @@ let run t =
   Lwt_main.run (
     Lwt.catch
       (fun () -> t)
-      (fun e -> Logs.err (fun m -> m "main: %s\n%s" (Printexc.to_string e) (Printexc.get_backtrace ())); Lwt.return_unit))
+      (fun e ->
+         Logs.err (fun m -> m "main: %s\n%s" (Printexc.to_string e)
+                      (Printexc.get_backtrace ()));
+         Lwt.return_unit))
 
-let () = at_exit (fun () -> run (call_hooks exit_hooks))
-let at_exit f = ignore (Lwt_sequence.add_l f exit_hooks)
-let at_enter f = ignore (Lwt_sequence.add_l f enter_hooks)
-let at_exit_iter f = ignore (Lwt_sequence.add_r f Lwt_main.leave_iter_hooks)
-let at_enter_iter f = ignore (Lwt_sequence.add_r f Lwt_main.enter_iter_hooks)
+let at_exit f = Lwt_main.at_exit f
+let at_enter f = ignore (Lwt_dllist.add_l f enter_hooks)
+let at_exit_iter f = ignore (Lwt_main.Leave_iter_hooks.add_first f)
+let at_enter_iter f = ignore (Lwt_main.Enter_iter_hooks.add_first f)

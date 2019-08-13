@@ -16,9 +16,10 @@ build: [
 depends: [
   "ocaml" {>= "4.04.2"}
   "dune" {build}
-  "lwt" {>= "2.4.3"}
+  "lwt" {>= "4.2.0"}
   "logs"
   "io-page-unix" {>= "2.0.0"}
+  "lwt-dllist"
 ]
 tags: "org:mirage"
 synopsis: "Unix core platform libraries for MirageOS"
