@@ -1,4 +1,17 @@
 (library
   (name oS)
   (public_name mirage-unix)
+  (modules oS lifecycle main time)
   (libraries lwt lwt.unix logs io-page-unix))
+
+(rule
+  (targets MirageOS.mli)
+  (action (copy %{lib:mirage-os-shim:MirageOS.mli} %{targets})))
+
+(library
+  (name MirageOS)
+  (public_name mirage-unix.os)
+  (modules MirageOS)
+  (wrapped false)
+  (flags (:standard -no-keep-locs))
+  (libraries mirage-os-shim oS))
