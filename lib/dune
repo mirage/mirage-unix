@@ -1,4 +1,12 @@
 (library
   (name oS)
   (public_name mirage-unix)
+  (modules oS lifecycle main time)
   (libraries lwt lwt.unix logs io-page-unix))
+
+(library
+  (name mirage_unix_main)
+  (public_name mirage-unix.main)
+  (modules mirage_unix_main)
+  (wrapped false)
+  (libraries mirage-os-shim oS))
