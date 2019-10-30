@@ -21,20 +21,12 @@ let rec run t =
 let ignore_sigpipe () =
   try Sys.(set_signal sigpipe Signal_ignore) with Invalid_argument _ -> ()
 
-let protect t =
-  Lwt.catch
-    (fun () -> t)
-    (fun e ->
-       Logs.err (fun m ->
-           m "main: %a\n%s" Fmt.exn e (Printexc.get_backtrace ()));
-       Lwt.return_unit)
-
 (* Main runloop, which registers a callback so it can be invoked
    when timeouts expire. Thus, the program may only call this function
    once and once only. *)
 let run t =
   ignore_sigpipe ();
-  run (protect t)
+  run t
 
 let () =
   at_exit (fun () ->
