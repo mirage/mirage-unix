@@ -18,7 +18,8 @@ depends: [
   "dune"
   "lwt" {>= "2.4.3"}
   "logs"
-  "mirage-runtime"
+  "duration"
+  "mirage-runtime" {>= "3.7.0"}
   "io-page-unix" {>= "2.0.0"}
 ]
 tags: "org:mirage"

@@ -17,8 +17,6 @@ module Main : sig
 end
 
 module Time : sig
-  type +'a io = 'a Lwt.t
-
   val sleep_ns : int64 -> unit Lwt.t
   (** [sleep_ns d] Block the current thread for [n] nanoseconds. *)
 end
