@@ -1,3 +1,9 @@
+## v4.0.0 (2019-11-01)
+
+* Use mirage-runtime hooks (at_enter_iter/at_exit_iter/at_exit), see mirage/mirage#1010 for details (#14 #15 by @samoht @dinosaure)
+* Adapt to uniform exit handling, see mirage/mirage#1011 (#15 by @hannesm)
+* Require OCaml 4.06.0 (#15 by @hannesm)
+
 ## 3.2.0 (2019-01-02)
 
 * port to Dune from ocamlbuild, and replace packing with
