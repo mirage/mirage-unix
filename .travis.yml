@@ -7,9 +7,8 @@ env:
     global:
         - TESTS=false
         - PACKAGE="mirage-unix"
-        - PINS="mirage-runtime:https://github.com/samoht/mirage.git#runtime-hooks"
     matrix:
+        - OCAML_VERSION=4.09
         - OCAML_VERSION=4.08
         - OCAML_VERSION=4.07
         - OCAML_VERSION=4.06
-        - OCAML_VERSION=4.05
