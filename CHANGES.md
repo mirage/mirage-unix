@@ -1,3 +1,8 @@
+## v4.0.1 (2021-04-14)
+
+* Delete `io-page-unix` and use `io-page.2.4.0` instead
+  (@samoth, @dinosaure, #16)
+
 ## v4.0.0 (2019-11-01)
 
 * Use mirage-runtime hooks (at_enter_iter/at_exit_iter/at_exit), see mirage/mirage#1010 for details (#14 #15 by @samoht @dinosaure)
