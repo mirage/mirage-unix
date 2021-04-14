@@ -1,7 +1,7 @@
 ## v4.0.1 (2021-04-14)
 
 * Delete `io-page-unix` and use `io-page.2.4.0` instead
-  (@samoth, @dinosaure, #16)
+  (@samoht, @dinosaure, #16)
 
 ## v4.0.0 (2019-11-01)
 
