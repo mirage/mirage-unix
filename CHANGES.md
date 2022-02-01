@@ -1,3 +1,7 @@
+## v5.0.0 (2022-02-01)
+
+* **breaking changes** mirage-unix provides its own module `Unix_os` (instead of `OS`) (@dinosaure, #19)
+
 ## v4.0.1 (2021-04-14)
 
 * Delete `io-page-unix` and use `io-page.2.4.0` instead
