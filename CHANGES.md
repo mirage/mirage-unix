@@ -1,3 +1,8 @@
+## v5.0.1 (2022-09-15)
+
+* remove superfluous io-page dependency (#21 @hannesm)
+* use GitHub actions for testing on macos and windows (instead of appveyor)
+
 ## v5.0.0 (2022-02-01)
 
 * **breaking changes** mirage-unix provides its own module `Unix_os` (instead of `OS`) (@dinosaure, #19)
