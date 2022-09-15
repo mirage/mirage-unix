@@ -1,4 +1,0 @@
-S lib
-PKG lwt logs
-
-B _build/lib/*
