@@ -19,7 +19,6 @@ depends: [
   "lwt" {>= "2.4.3"}
   "duration"
   "mirage-runtime" {>= "4.0"}
-  "io-page" {>= "2.4.0"}
 ]
 tags: "org:mirage"
 synopsis: "Unix core platform libraries for MirageOS"
